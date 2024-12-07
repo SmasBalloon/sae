@@ -1,2 +1,1 @@
 isaac : 20 pts
-mathis : 0 pts

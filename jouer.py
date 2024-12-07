@@ -8,5 +8,5 @@ def joue():
     print()
     print()
     print("----------------------------------")
-    jouer = input()
+    jouer = input().strip().lower()
     return jouer
