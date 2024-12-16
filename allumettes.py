@@ -1,4 +1,6 @@
 from jouer import joue
+import random
+import time
 from scores import mise_a_jour_scoretxt
 allumettes: int = 0
 soustraction: int = 0
@@ -6,6 +8,7 @@ joueur: int = 0
 jouer: int = 1
 score1: int = 0
 score2: int = 0
+
 
 def allumette(joueur1: str, joueur2: str):
     '''
@@ -23,7 +26,6 @@ def allumette(joueur1: str, joueur2: str):
     Le jeu continue tant que `jouer` est égal à 1. Les scores sont mis à jour et sauvegardés
     à la fin de chaque partie.
     '''
-    
     global jouer, score1, score2, joueur
     while jouer != 2:
         print('quelle joueur commence par jouer ?')
@@ -111,6 +113,15 @@ def allumette(joueur1: str, joueur2: str):
                     mise_a_jour_scoretxt(joueur2, score2, nom)
                     from main import jeux
                     jeux(joueur1, joueur2)
+
+def botfacile():
+    '''
+    Simule un jeu d'allumettes entre un joueur et un bot.
+    Le bot retire aléatoirement entre 1 et 3 allumettes.
+    '''
+    time.sleep(1)
+    choix = random.randint(1, 3)
+    return choix
 
 if __name__ == '__main__':
     allumette("joueur1", "joueur2")
