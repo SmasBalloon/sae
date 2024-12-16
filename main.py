@@ -28,7 +28,7 @@ def insription():
     joueur1, joueur2 = '', ''
     if bot == 'o':
         try:
-            combien = int(input('Combien de bot voulez-vous mettre ? : '))
+            combien = int(input('Voulez vous 1 bot ou 2 bots ? : '))
         except ValueError:
             print("Veuillez saisir un nombre valide.")
             combien = 0
@@ -57,18 +57,19 @@ def insription():
             elif bot_level == 2:
                 joueur1 = str("botmoyen@")
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
-            else:
+            elif bot_level == 3:
                 joueur1 = str("botimposible@")
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
-        else:
+
+        elif combien == 2:
+            print('quelle niveau de difficulté du joueur 1 ?')
+            print('saisir 1 pour facile')
+            print('saisir 2 pour moyen')
+            print('saisir 3 pour imposible')
             try:
-                print('quelle niveau de difficulté du joueur 1 ?')
-                print('saisir 1 pour facile')
-                print('saisir 2 pour moyen')
-                print('saisir 3 pour imposible')
                 bot_level1 = int(input())
             except ValueError:
-                print("Veuillez saisir un nombre valide.")
+                print("\33[0;31;40m Veuillez saisir un nombre valide. \033[0m\n")
                 bot_level1 = 0
             while bot_level1 not in [1, 2, 3]:
                 try :
@@ -81,33 +82,34 @@ def insription():
                         bot_level1 = int(input())
                     except ValueError:
                         print("")
-                if bot_level1 == 1:
-                    joueur1 = str("botfacile@")
-                elif bot_level1 == 2:
-                    joueur1 = str("botmoyen@")
-                else:
-                    joueur1 = str("botimposible@")
+
+            if bot_level1 == 1:
+                joueur1 = str("botfacile@")
+            elif bot_level1 == 2:
+                joueur1 = str("botmoyen@")
+            else:
+                joueur1 = str("botimposible@")
                 
+            print('quelle niveau de difficulté du joueur 2 ?')
+            print('saisir 1 pour facile')
+            print('saisir 2 pour moyen')
+            print('saisir 3 pour imposible')
+            try:
+                bot_level2 = int(input())
+            except ValueError:
+                print("Veuillez saisir un nombre valide.")
+                bot_level2 = 0
+            while bot_level2 not in [1, 2, 3]:
                 try:
-                    print('quelle niveau de difficulté du joueur 2 ?')
-                    print('saisir 1 pour facile')
-                    print('saisir 2 pour moyen')
-                    print('saisir 3 pour imposible')
                     bot_level2 = int(input())
                 except ValueError:
-                    print("Veuillez saisir un nombre valide.")
-                    bot_level2 = 0
-                while bot_level2 not in [1, 2, 3]:
-                    try:
-                        bot_level2 = int(input())
-                    except ValueError:
-                        print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 et 3 \033[0m\n")
-                if bot_level2 == 1:
-                    joueur2 = str("botfacile@")
-                elif bot_level2 == 2:
-                    joueur2 = str("botmoyen@")
-                else:
-                    joueur2 = str("botimposible@")
+                    print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 et 3 \033[0m\n")
+            if bot_level2 == 1:
+                joueur2 = str("botfacile@")
+            elif bot_level2 == 2:
+                joueur2 = str("botmoyen@")
+            else:
+                joueur2 = str("botimposible@")
     else :
         joueur1 = str(input('quelle est le nom du joueur 1 : '))
         joueur2 = str(input('quelle est le nom du joueur 2 : '))
@@ -115,14 +117,6 @@ def insription():
     return joueur1, joueur2
 
 
-def debut(joueur1:str, joueur2:str):
-    '''
-    Fonction qui permet de lancer le jeu
-    '''
-    global nb
-    while nb != 5:
-        insription()
-        jeux(joueur1, joueur2)
 
 def jeux(joueur1 : str, joueur2 : str):
     print('|----------------------------------------------------------------------------|')
@@ -168,5 +162,17 @@ def jeux(joueur1 : str, joueur2 : str):
         print("Merci d'avoir joué !")
     else:
         print("Veuillez saisir un nombre entre 1 et 5.")
+
+def debut():
+    '''
+    Fonction qui permet de lancer le jeu
+    '''
+    joueur1 : str = ''
+    joueur2 : str = ''
+    global nb
+    while nb != 5:
+        insription()
+        jeux(joueur1, joueur2)
+
 if __name__ == "__main__" :
     debut()
