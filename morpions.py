@@ -1,6 +1,6 @@
 from jouer import joue
 import time
-from scores import mise_a_jour_scoretxt
+from scores import mise_a_jour_score
 win : int
 symbole : str
 joueur : int
@@ -10,7 +10,7 @@ debut_temp : float
 fin_temp : float
 score : int
 
-def morpion(joueur1 :str, joueur2:str):
+def morpion(joueur1 :str, joueur2:str, bot1:bool, bot2:bool):
     
     """
     Simulates a game of Tic-Tac-Toe (Morpion) between two players.
@@ -120,7 +120,7 @@ def morpion(joueur1 :str, joueur2:str):
                 print(f'{joueur1} gagner')
                 
                 score = 20
-                mise_a_jour_scoretxt(joueur1, score, "morpions")
+                mise_a_jour_score(joueur1, score, "morpions")
             
             elif (tableau_morpion[1][1] == 'O' and 
                 tableau_morpion[1][3] == 'O' and tableau_morpion[1][5] == 'O') or (tableau_morpion[3][1] == 'O' and 
@@ -137,7 +137,7 @@ def morpion(joueur1 :str, joueur2:str):
                 print(f'{joueur2}  gagner')
                 fin_temp = time.time()
                 score = int(100 - (fin_temp - debut_temp))
-                mise_a_jour_scoretxt(joueur2, score, "morpions")
+                mise_a_jour_score(joueur2, score, "morpions")
 
             elif (tableau_morpion[1][1] in ['X', 'O'] and tableau_morpion[1][3] in ['X', 'O'] and 
                 tableau_morpion[1][5] in ['X', 'O'] and tableau_morpion[3][1] in ['X', 'O'] and 
@@ -151,4 +151,4 @@ def morpion(joueur1 :str, joueur2:str):
         jouer = int(joue())
 
 if __name__ == "__main__":
-    morpion('joueur1', 'joueur2')
+    morpion('joueur1', 'joueur2', False, False)

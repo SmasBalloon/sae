@@ -1,5 +1,5 @@
 # Dimensions du plateau
-from scores import mise_a_jour_scoretxt
+from scores import mise_a_jour_score
 Nblignes = 6
 Nbcoll = 7
 
@@ -63,7 +63,7 @@ def dessiner(tableau: list[list[str]]):
     """Vérifie si le plateau est plein."""
     return all(tableau[Nblignes - 1][col] != " " for col in range(Nbcoll))
 
-def lancer_partie(joueur1 : str, joueur2 : str):
+def lancer_partie(joueur1 : str, joueur2 : str, bot1 : bool, bot2 : bool):
     """Simule un jeu de Puissance 4."""
     tableau : list[list[str]] = creation_table()
     fin_de_partie = False
@@ -106,7 +106,7 @@ def lancer_partie(joueur1 : str, joueur2 : str):
                     
                 print(f"\nFélicitations ! Le joueur {winner} a gagné !")
                 print(f"\nLe joueur {winner} remporte 30 points !")
-                mise_a_jour_scoretxt(winner, 30, "puissances4")
+                mise_a_jour_score(winner, 30, "puissances")
                 fin_de_partie = True
             elif dessiner(tableau):
                 print_table(tableau)
@@ -120,4 +120,4 @@ def lancer_partie(joueur1 : str, joueur2 : str):
         print_table(tableau)
 
 if __name__ == "__main__":
-    lancer_partie("joueur1", "joueur2")
+    lancer_partie("joueur1", "joueur2", False, False)

@@ -30,7 +30,8 @@ def lire_meilleur(jeu : str):
     Lit les meilleurs scores pour un jeu donné.
     Args:
         jeu (str): Le nom du jeu pour lequel les meilleurs scores doivent être lus. 
-                Doit être l'un des suivants: 'allumettes', 'morpions', 'devinettes', 'puissances4'."""
+                Doit être l'un des suivants: 'allumettes', 'morpions', 'devinettes', 'puissances4'.
+    """
     conn = sqlite3.connect("scorejeux.db")
     cursor = conn.cursor()
     cursor.execute("select * from score_{jeu} order by score ASC".format(jeu=jeu))

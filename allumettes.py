@@ -1,7 +1,10 @@
 from jouer import joue
+from demandebot import diffbot
+from main import jeux
 import random
 import time
-from scores import mise_a_jour_scoretxt
+from scores import mise_a_jour_score
+
 allumettes: int = 0
 soustraction: int = 0
 joueur: int = 0
@@ -9,15 +12,16 @@ jouer: int = 1
 score1: int = 0
 score2: int = 0
 
-
-def allumette(joueur1: str, joueur2: str):
+def allumette(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
     '''
-    Simule un jeu d'allumettes entre deux joueurs.
+    Simule un jeu d'allumettes entre deux joueurs ou bots.
     Le jeu commence avec 20 allumettes. Les joueurs retirent à tour de rôle 1, 2 ou 3 allumettes.
     Le joueur qui retire la dernière allumette perd la partie.
     Args:
         joueur1 (str): Le nom du premier joueur.
         joueur2 (str): Le nom du deuxième joueur.
+        bot1 (bool): Indicateur si le premier joueur est un bot.
+        bot2 (bool): Indicateur si le deuxième joueur est un bot.
     Variables globales:
         jouer (int): Indicateur pour continuer ou arrêter le jeu.
         score1 (int): Score du joueur 1.
@@ -26,6 +30,8 @@ def allumette(joueur1: str, joueur2: str):
     Le jeu continue tant que `jouer` est égal à 1. Les scores sont mis à jour et sauvegardés
     à la fin de chaque partie.
     '''
+    diffbot(joueur1, joueur2, bot1, bot2)
+
     global jouer, score1, score2, joueur
     while jouer != 2:
         print('quelle joueur commence par jouer ?')
@@ -54,14 +60,35 @@ def allumette(joueur1: str, joueur2: str):
 
         while allumettes > 0:
             if joueur % 2 == 1:
-                print(f"{joueur1} à toi de jouer")
+                if bot1:
+                    if joueur1 == "botfacile":
+                        soustraction = botfacile()
+                    elif joueur1 == "botmoyen":
+                        soustraction = botmoyen(allumettes)
+                    else:
+                        soustraction = botimposible(allumettes)
+                    print(f"Le bot {joueur1} enlève {soustraction} allumettes")
+                else:
+                    print(f"{joueur1} à toi de jouer")
+                    try:
+                        soustraction = int(input("combien d'allumette veux tu enlever : ").strip())
+                    except ValueError:
+                        soustraction = 0
             else:
-                print(f"{joueur2} à toi de jouer")
-
-            try:
-                soustraction = int(input("combien d'allumette veux tu enlever : ").strip())
-            except ValueError:
-                soustraction = 0
+                if bot2:
+                    if joueur2 == "botfacile":
+                        soustraction = botfacile()
+                    elif joueur2 == "botmoyen":
+                        soustraction = botmoyen(allumettes)
+                    else:
+                        soustraction = botimposible(allumettes)
+                    print(f"Le bot {joueur2} enlève {soustraction} allumettes")
+                else:
+                    print(f"{joueur2} à toi de jouer")
+                    try:
+                        soustraction = int(input("combien d'allumette veux tu enlever : ").strip())
+                    except ValueError:
+                        soustraction = 0
 
             while soustraction not in [1, 2, 3]:
                 print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1 et 3 \033[0m\n")
@@ -107,32 +134,52 @@ def allumette(joueur1: str, joueur2: str):
                     print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1 et 2 \033[0m\n")
                     jouer = int(joue())
 
-                nom : str = "allumettes"
                 if jouer == 2:
-                    mise_a_jour_scoretxt(joueur1, score1, nom)
-                    mise_a_jour_scoretxt(joueur2, score2, nom)
-                    from main import jeux
-                    jeux(joueur1, joueur2)
+                    nom : str = "allumettes"
+                    if bot1 == False and bot2 == False:
+                        mise_a_jour_score(joueur1, score1, nom)
+                        mise_a_jour_score(joueur2, score2, nom)
+                    elif bot1 == True and bot2 == False:
+                        mise_a_jour_score(joueur2, score2, nom)
+                    elif bot1 == False and bot2 == True:
+                        mise_a_jour_score(joueur1, score1, nom)
+                    else:
+                        print("")
+                    jeux(joueur1, joueur2, bot1, bot2)
 
 def botfacile():
     '''
     Simule un jeu d'allumettes entre un joueur et un bot.
     Le bot retire aléatoirement entre 1 et 3 allumettes.
     '''
-    time.sleep(1)
-    choix = random.randint(1, 3)
+    time.sleep(1.5)
+    choix = random.choice([1, 2, 3])
     return choix
 
 def botmoyen(allumettes: int):
     '''
-    Simule un jeu d'allumettes entre un joueur et un bot.
-    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
+    Simule un bot qui est naïf.
+    '''
+    time.sleep(0.5)
+    if allumettes > 4:
+        choix = 4 - allumettes
+    else:
+        choix = 1
+    return choix
 
 def botimposible(allumettes: int):
     '''
-    Simule un jeu d'allumettes entre un joueur et un bot.
-    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
+    création d'un bot impossible que gagne a chaque fois
+    '''
+    time.sleep(0.1)
+    if allumettes % 4 == 0:
+        choix = 3
+    elif allumettes % 4 == 3:
+        choix = 2
+    else:
+        choix = 1
+    return choix
     
 
 if __name__ == '__main__':
-    allumette("joueur1", "joueur2")
+    allumette("botimpossible", "botimpossible" , True, True)

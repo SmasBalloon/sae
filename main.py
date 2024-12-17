@@ -2,12 +2,13 @@ import os
 from allumettes import allumette
 from morpions import morpion
 from devinettes import devinette
-from scores import lire_meilleurs
+from scores import lire_meilleur
 from puissances4 import lancer_partie
 from fichierregle import regledevinette, regleallumette, reglemorpion, reglepuissance4
 scores : int
 nb : float = 0
-
+bot1 : bool = False
+bot2 : bool = False
 
 def nettoyer_terminal():
     os.system('cls')
@@ -56,13 +57,19 @@ def insription():
             
             if bot_level == 1:
                 joueur1 = str("botfacile@")
+                bot1 : bool = True
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
+                bot2 : bool = False
             elif bot_level == 2:
                 joueur1 = str("botmoyen@")
+                bot1 : bool = True
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
+                bot2 : bool = False
             elif bot_level == 3:
                 joueur1 = str("botimposible@")
+                bot1 : bool = True
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
+                bot2 : bool = False
 
         elif combien == 2:
             print('quelle niveau de difficulté du joueur 1 ?')
@@ -88,10 +95,13 @@ def insription():
 
             if bot_level1 == 1:
                 joueur1 = str("botfacile@")
+                bot1 : bool = True
             elif bot_level1 == 2:
                 joueur1 = str("botmoyen@")
+                bot1 : bool = True
             else:
                 joueur1 = str("botimposible@")
+                bot1 : bool = True
                 
             print('quelle niveau de difficulté du joueur 2 ?')
             print('saisir 1 pour facile')
@@ -109,19 +119,24 @@ def insription():
                     print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 et 3 \033[0m\n")
             if bot_level2 == 1:
                 joueur2 = str("botfacile@")
+                bot2 : bool = True
             elif bot_level2 == 2:
                 joueur2 = str("botmoyen@")
+                bot2 : bool = True
             else:
                 joueur2 = str("botimposible@")
+                bot2 : bool = True
     else :
         joueur1 = str(input('quelle est le nom du joueur 1 : '))
+        bot2 : bool = False
         joueur2 = str(input('quelle est le nom du joueur 2 : '))
+        bot2 : bool = False
     
-    return joueur1, joueur2
+    return joueur1, joueur2, bot1, bot2
 
 
 
-def jeux(joueur1 : str, joueur2 : str):
+def jeux(joueur1 : str, joueur2 : str , bot1 : bool, bot2 : bool):
     print('|----------------------------------------------------------------------------|')
     print('|                                                                            |')
     print('| -saisir 1 pour jouer au devinnette ;                                       |')
@@ -140,27 +155,27 @@ def jeux(joueur1 : str, joueur2 : str):
     if nb == 1:
         regledevinette()
         nettoyer_terminal()
-        lire_meilleurs('devinette')
+        lire_meilleur('devinette')
         nettoyer_terminal()
-        devinette(joueur1, joueur2)
+        devinette(joueur1, joueur2, bot1, bot2)
     elif nb == 2:
         regleallumette()
         nettoyer_terminal()
-        lire_meilleurs('allumette')
+        lire_meilleur('allumette')
         nettoyer_terminal()
-        allumette(joueur1, joueur2)
+        allumette(joueur1, joueur2, bot1, bot2)
     elif nb == 3:
         reglemorpion()
         nettoyer_terminal()
-        lire_meilleurs('morpion')
+        lire_meilleur('morpion')
         nettoyer_terminal()
-        morpion(joueur1, joueur2)
+        morpion(joueur1, joueur2, bot1, bot2)
     elif nb == 4:
         reglepuissance4()
         nettoyer_terminal()
-        lire_meilleurs('puissance')
+        lire_meilleur('puissance')
         nettoyer_terminal()
-        lancer_partie(joueur1, joueur2)
+        lancer_partie(joueur1, joueur2, bot1, bot2)
     elif nb == 5:
         print("Merci d'avoir joué !")
     else:
@@ -175,7 +190,7 @@ def debut():
     global nb
     while nb != 5:
         insription()
-        jeux(joueur1, joueur2)
+        jeux(joueur1, joueur2 , bot1, bot2)
 
 if __name__ == "__main__" :
     debut()
