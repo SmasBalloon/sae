@@ -50,3 +50,4 @@ def diffbot(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
 
 if __name__ == "__main__":
     diffbot("botfacile", "botimpossible", True, True)
+

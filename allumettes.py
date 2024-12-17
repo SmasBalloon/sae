@@ -30,6 +30,7 @@ def allumette(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
     Le jeu continue tant que `jouer` est égal à 1. Les scores sont mis à jour et sauvegardés
     à la fin de chaque partie.
     '''
+
     diffbot(joueur1, joueur2, bot1, bot2)
 
     global jouer, score1, score2, joueur
@@ -146,6 +147,7 @@ def allumette(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
                     else:
                         print("")
                     jeux(joueur1, joueur2, bot1, bot2)
+
 
 def botfacile():
     '''

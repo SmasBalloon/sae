@@ -4,6 +4,7 @@ import time
 from scores import mise_a_jour_score 
 
 
+
 def clear_terminal():
     os.system('cls')
 
@@ -115,9 +116,11 @@ def botfacile(statue:int):
         print(Adeviner)
         
     else :
+
         time.sleep(1)
         choix = random.randint(0,1000)
         return choix
+
 
 def botmoyen(statue:int):
     '''
@@ -125,6 +128,7 @@ def botmoyen(statue:int):
     Le bot retire aléatoirement entre 1 et 3 allumettes.'''
     if statue == 1:
         choix = random.randint(0, 1000)
+
         return choix
     else :
         print("hello world")
@@ -177,4 +181,5 @@ def untrucmoyen():
 def untrucimpossible():
     resultat:int=randint(0,1000)
     print(resultat)
+
     
