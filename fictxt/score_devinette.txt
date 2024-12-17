@@ -1,3 +1,0 @@
-mathis : 100 pts
-isaac : 50 pts
-isaac : 10 pts
