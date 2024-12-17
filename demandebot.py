@@ -1,16 +1,15 @@
 def diffbot(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
-    bots = ["botfacile", "botmoyen", "botimpossible"]
+    bots = ["botfacile", "botimpossible"]
 
     def get_difficulty():
         print('1 facile')
-        print('2 moyen')
-        print('3 impossible')
+        print('2 impossible')
         try:
             difficulte = int(input().strip())
         except ValueError:
             difficulte = 0
         while difficulte not in [1, 2, 3]:
-            print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1 et 3 \033[0m\n")
+            print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1 et 2 \033[0m\n")
             try:
                 difficulte = int(input().strip())
             except ValueError:
@@ -21,8 +20,6 @@ def diffbot(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
         difficulte = get_difficulty()
         if difficulte == 1:
             return "botfacile"
-        elif difficulte == 2:
-            return "botmoyen"
         else:
             return "botimpossible"
 
@@ -47,7 +44,3 @@ def diffbot(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
             joueur2 = definir_difficulter(joueur2)
 
     return(joueur1, joueur2 , bot1, bot2)
-
-if __name__ == "__main__":
-    diffbot("botfacile", "botimpossible", False, True)
-

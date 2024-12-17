@@ -27,6 +27,7 @@ def insription():
             print("")
 
     joueur1, joueur2 = '', ''
+    global bot1, bot2
     if bot == 'o':
         try:
             combien = int(input('Voulez vous 1 bot ou 2 bots ? : '))
@@ -42,13 +43,12 @@ def insription():
         if combien == 1:
             print('quelle niveau de difficulté du joueur 1 ?')
             print('saisir 1 pour facile')
-            print('saisir 2 pour moyen')
-            print('saisir 3 pour imposible')
+            print('saisir 2 pour imposible')
             try:
                 bot_level = int(input())
             except ValueError:
                 bot_level = 0
-            while bot_level not in [1, 2, 3]:
+            while bot_level not in [1, 2]:
                 print("\33[0;31;40m Veuillez saisir un nombre valide. \33[0m")
                 try :
                     bot_level = int(input())
@@ -56,17 +56,12 @@ def insription():
                     bot_level = 0
             
             if bot_level == 1:
-                joueur1 = str("botfacile@")
+                joueur1 = str("botfacile")
                 bot1 : bool = True
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
                 bot2 : bool = False
             elif bot_level == 2:
-                joueur1 = str("botmoyen@")
-                bot1 : bool = True
-                joueur2 = str(input('quelle est le nom du joueur 2 : '))
-                bot2 : bool = False
-            elif bot_level == 3:
-                joueur1 = str("botimposible@")
+                joueur1 = str("botimposible")
                 bot1 : bool = True
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
                 bot2 : bool = False
@@ -74,57 +69,49 @@ def insription():
         elif combien == 2:
             print('quelle niveau de difficulté du joueur 1 ?')
             print('saisir 1 pour facile')
-            print('saisir 2 pour moyen')
-            print('saisir 3 pour imposible')
+            print('saisir 2 pour imposible')
             try:
                 bot_level1 = int(input())
             except ValueError:
                 print("\33[0;31;40m Veuillez saisir un nombre valide. \033[0m\n")
                 bot_level1 = 0
-            while bot_level1 not in [1, 2, 3]:
+            while bot_level1 not in [1, 2]:
                 try :
                     bot_level1 = int(input())
                 except ValueError:
-                    print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 et 3 \033[0m\n")
-                while bot_level1 not in [1, 2, 3]:
-                    print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 et 3 \033[0m\n")
+                    print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 \033[0m\n")
+                while bot_level1 not in [1, 2]:
+                    print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 \033[0m\n")
                     try:
                         bot_level1 = int(input())
                     except ValueError:
                         print("")
 
             if bot_level1 == 1:
-                joueur1 = str("botfacile@")
-                bot1 : bool = True
-            elif bot_level1 == 2:
-                joueur1 = str("botmoyen@")
+                joueur1 = str("botfacile")
                 bot1 : bool = True
             else:
-                joueur1 = str("botimposible@")
+                joueur1 = str("botimposible")
                 bot1 : bool = True
                 
             print('quelle niveau de difficulté du joueur 2 ?')
             print('saisir 1 pour facile')
-            print('saisir 2 pour moyen')
-            print('saisir 3 pour imposible')
+            print('saisir 2 pour imposible')
             try:
                 bot_level2 = int(input())
             except ValueError:
                 print("\33[0;31;40m Veuillez saisir un nombre valide. \33[0m")
                 bot_level2 = 0
-            while bot_level2 not in [1, 2, 3]:
+            while bot_level2 not in [1, 2]:
                 try:
                     bot_level2 = int(input())
                 except ValueError:
-                    print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 et 3 \033[0m\n")
+                    print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 \033[0m\n")
             if bot_level2 == 1:
-                joueur2 = str("botfacile@")
-                bot2 : bool = True
-            elif bot_level2 == 2:
-                joueur2 = str("botmoyen@")
+                joueur2 = str("botfacile")
                 bot2 : bool = True
             else:
-                joueur2 = str("botimposible@")
+                joueur2 = str("botimposible")
                 bot2 : bool = True
     else :
         joueur1 = str(input('quelle est le nom du joueur 1 : '))
