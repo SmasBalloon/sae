@@ -49,5 +49,5 @@ def diffbot(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
     return(joueur1, joueur2 , bot1, bot2)
 
 if __name__ == "__main__":
-    diffbot("botfacile", "botimpossible", True, True)
+    diffbot("botfacile", "botimpossible", False, True)
 
