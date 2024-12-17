@@ -123,5 +123,16 @@ def botfacile():
     choix = random.randint(1, 3)
     return choix
 
+def botmoyen(allumettes: int):
+    '''
+    Simule un jeu d'allumettes entre un joueur et un bot.
+    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
+
+def botimposible(allumettes: int):
+    '''
+    Simule un jeu d'allumettes entre un joueur et un bot.
+    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
+    
+
 if __name__ == '__main__':
     allumette("joueur1", "joueur2")
