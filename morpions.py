@@ -157,3 +157,6 @@ def botimpossible(tableau_morpion: list[list[str]], symbole: str) -> str:
 
     # Sinon, choisir une position aléatoire
     return random.choice(possible)
+
+if __name__ == "__main__":
+    morpion("botfacile", "botimpossible", True, True)

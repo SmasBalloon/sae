@@ -1,7 +1,6 @@
 import os
 from allumettes import allumette
 from morpions import morpion
-from devinettes import devinette
 from scores import lire_meilleur
 from puissances4 import lancer_partie
 from fichierregle import regledevinette, regleallumette, reglemorpion, reglepuissance4
@@ -57,14 +56,14 @@ def insription():
             
             if bot_level == 1:
                 joueur1 = str("botfacile")
-                bot1 : bool = True
+                bot1 = True
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
-                bot2 : bool = False
+                bot2 = False
             elif bot_level == 2:
                 joueur1 = str("botimposible")
-                bot1 : bool = True
+                bot1 = True
                 joueur2 = str(input('quelle est le nom du joueur 2 : '))
-                bot2 : bool = False
+                bot2 = False
 
         elif combien == 2:
             print('quelle niveau de difficulté du joueur 1 ?')
@@ -89,10 +88,10 @@ def insription():
 
             if bot_level1 == 1:
                 joueur1 = str("botfacile")
-                bot1 : bool = True
+                bot1 = True
             else:
                 joueur1 = str("botimposible")
-                bot1 : bool = True
+                bot1 = True
                 
             print('quelle niveau de difficulté du joueur 2 ?')
             print('saisir 1 pour facile')
@@ -109,15 +108,15 @@ def insription():
                     print("\33[0;31;40m erreur : veuillez saisir un nombre entre 1, 2 \033[0m\n")
             if bot_level2 == 1:
                 joueur2 = str("botfacile")
-                bot2 : bool = True
+                bot2 = True
             else:
                 joueur2 = str("botimposible")
-                bot2 : bool = True
+                bot2 = True
     else :
         joueur1 = str(input('quelle est le nom du joueur 1 : '))
-        bot2 : bool = False
+        bot2 = False
         joueur2 = str(input('quelle est le nom du joueur 2 : '))
-        bot2 : bool = False
+        bot2 = False
     
     return joueur1, joueur2, bot1, bot2
 
@@ -144,7 +143,6 @@ def jeux(joueur1 : str, joueur2 : str , bot1 : bool, bot2 : bool):
         nettoyer_terminal()
         lire_meilleur('devinette')
         nettoyer_terminal()
-        devinette(joueur1, joueur2, bot1, bot2)
     elif nb == 2:
         regleallumette()
         nettoyer_terminal()

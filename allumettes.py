@@ -1,6 +1,5 @@
 from jouer import joue
 from demandebot import diffbot
-from main import jeux
 import random
 import time
 from scores import mise_a_jour_score
@@ -146,7 +145,6 @@ def allumette(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
                         mise_a_jour_score(joueur1, score1, nom)
                     else:
                         print("")
-                    jeux(joueur1, joueur2, bot1, bot2)
 
 
 def botfacile():
