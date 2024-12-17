@@ -1,4 +1,6 @@
 import os
+import random
+import time
 from scores import mise_a_jour_scoretxt
 
 
@@ -98,3 +100,44 @@ def Joueur2Maitre(joueur1:str):
     print ("le joueur 1 remporte donc ",score," points !")
     mise_a_jour_scoretxt(joueur1 , score, 'devinettes')
 
+
+
+def botfacile(statue:int):
+    '''
+    Simule un jeu d'allumettes entre un joueur et un bot.
+    Le bot retire aléatoirement entre 1 et 3 allumettes.
+    '''
+    ChoixPossible=[0,100,200,300,400,500,600,700,800,900,1000,250,750]
+    if statue == 1:
+        time.sleep(1)
+        choix = random.randint(0, 12)
+        Adeviner=ChoixPossible[choix]
+        print(Adeviner)
+        
+    else :
+       time.sleep(1)
+       choix = random.randint(0,1000)
+       return choix
+
+def botmoyen(statue:int):
+    '''
+    Simule un jeu d'allumettes entre un joueur et un bot.
+    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
+    if statue == 1:
+        time.sleep(1)
+        choix = random.randint(1, 3)
+        return choix
+    else :
+        print("hello world")
+
+def botimposible(statue:int):
+    '''
+    Simule un jeu d'allumettes entre un joueur et un bot.
+    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
+    if statue == 1:
+        time.sleep(1)
+        choix = random.randint(1, 3)
+        return choix
+    else :
+        print("hello world")
+    

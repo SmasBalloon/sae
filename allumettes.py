@@ -1,7 +1,7 @@
 from jouer import joue
 import random
 import time
-from scores import mise_a_jour_scoretxt
+from scores import mise_a_jour_score
 allumettes: int = 0
 soustraction: int = 0
 joueur: int = 0
@@ -26,6 +26,7 @@ def allumette(joueur1: str, joueur2: str):
     Le jeu continue tant que `jouer` est égal à 1. Les scores sont mis à jour et sauvegardés
     à la fin de chaque partie.
     '''
+
     global jouer, score1, score2, joueur
     while jouer != 2:
         print('quelle joueur commence par jouer ?')
@@ -109,8 +110,8 @@ def allumette(joueur1: str, joueur2: str):
 
                 nom : str = "allumettes"
                 if jouer == 2:
-                    mise_a_jour_scoretxt(joueur1, score1, nom)
-                    mise_a_jour_scoretxt(joueur2, score2, nom)
+                    mise_a_jour_score(joueur1, score1, nom)
+                    mise_a_jour_score(joueur2, score2, nom)
                     from main import jeux
                     jeux(joueur1, joueur2)
 
