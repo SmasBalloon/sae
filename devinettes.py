@@ -125,10 +125,10 @@ def botfacile(statue:int):
 def botmoyen(statue:int):
     '''
     Simule un jeu d'allumettes entre un joueur et un bot.
-    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
-    if statue == 1:
-        choix = random.randint(0, 1000)
-
+    Le bot retire al
+    éatoirement entre 1 et 3 allumettes.'''
+    if statue == 1:  # si le bot est le joueur 1
+        choix = random.randint(0, 1000) # le bot choisit un nombre aléatoire entre 0 et 1000
         return choix
     else :
         print("hello world")
