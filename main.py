@@ -13,6 +13,9 @@ def nettoyer_terminal():
     os.system('cls')
 
 def insription():
+    """
+    Fonction qui permet d'inscrire les joueurs
+    """
     try:
         bot = str(input('Vous voulez jouer contre un bot ou un joueur ? O/N : ')).lower()
     except ValueError:
@@ -123,6 +126,16 @@ def insription():
 
 
 def jeux(joueur1 : str, joueur2 : str , bot1 : bool, bot2 : bool):
+    """
+    Fonction qui permet de choisir le jeu
+    args:
+        joueur1 (str): Le nom du premier joueur
+        joueur2 (str): Le nom du deuxième joueur
+        bot1 (bool): True si le joueur 1 est un bot, False sinon
+        bot2 (bool): True si le joueur 2 est un bot, False sinon
+    return:
+        None
+    """ 
     print('|----------------------------------------------------------------------------|')
     print('|                                                                            |')
     print('| -saisir 1 pour jouer au devinnette ;                                       |')
