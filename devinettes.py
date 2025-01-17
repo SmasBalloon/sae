@@ -35,7 +35,7 @@ def devinette(joueur1:str , joueur2:str, bot1:bool, bot2:bool):
     print('A bientôt!')
 
 
-def Joueur1Maitre(joueur2:str):
+def Joueur1Maitre(joueur2:str,joueur1:str):
     """
     Permet au joueur 1 de définir un nombre à deviner pour le joueur 2 et gère le processus de devinette.
     Args:
@@ -54,23 +54,54 @@ def Joueur1Maitre(joueur2:str):
     nbadeviner:int
     reponse:int
     reponse=0
-    nbadeviner = int(input('Quel chiffre le joueur 2 doit-il deviner? Le chiffre doit être compris entre 0 et 1000.'))
+    reppourbot=0
+    choix:int=500
+    var:int=250
+    if joueur1 == "botfacile":
+        nbadeviner = botfacile()
+    elif joueur1 == "botmoyen":
+        nbadeviner = random.randint(0, 1000)
+    elif joueur1 =="botimpossible":
+        nbadeviner = random.randint(0, 1000)
+    else:
+        nbadeviner = int(input('Quel chiffre le joueur 1 doit-il deviner? Le chiffre doit être compris entre 0 et 1000.'))
     while not 0<nbadeviner<1000:
         print ("Ce nombre n'est pas valide")
-        nbadeviner = int(input('Quel chiffre le joueur 2 doit-il deviner? Le chiffre doit être compris entre 0 et 1000.'))
+        if joueur1 == "botfacile":
+            nbadeviner = botfacile()
+        elif joueur1 =="botimpossible":
+            nbadeviner = random.randint(0, 1000)
+        else:
+            nbadeviner = int(input('Quel chiffre le joueur 1 doit-il deviner? Le chiffre doit être compris entre 0 et 1000.'))
     clear_terminal()
     gess = 2000
     while gess!=nbadeviner :
-        gess = int(input("Quel est votre proposition ?"))
+        if joueur2 == "botfacile":
+            gess = untrucfacile(reppourbot, turn)
+        elif joueur2 == "botimpossible":
+            if reppourbot == 0:
+                choix=int(choix-var)
+            else:
+                choix=int(choix+var) 
+            var=int(var/2)
+            turn+=1
+            gess=choix
         reponse+=1
-        print(input('Le joueur 2 est-il trop haut ou trop bas ?'))
+        if gess > nbadeviner :
+            print ("trop haut!")
+            reppourbot=0
+        elif gess < nbadeviner:
+            print ("trop bas!")
+            reppourbot=1
+        else:
+            gess = int(input("Quel est votre proposition ?"))
     print ("Bravo!!! Tu as devine en ",reponse,"essaies")
     score = int(100/reponse)
     print ("le joueur 2 remporte donc ",score," points !")
     mise_a_jour_score(joueur2 , score, 'devinettes')
     
 
-def Joueur2Maitre(joueur1:str):
+def Joueur2Maitre(joueur2:str,joueur1:str):
     """
     Permet au joueur 2 de définir un nombre que le joueur 1 doit deviner, puis gère le processus de devinette.
     Args:
@@ -81,22 +112,50 @@ def Joueur2Maitre(joueur1:str):
     Returns:
         None
     """
-
+    turn:int=0
     score:int
     nbadeviner:int
     reponse:int
     reponse=0
-    nbadeviner = int(input('Quel chiffre le joueur 1 doit-il deviner? Le chiffre doit être compris entre 0 et 1000.'))
+    reppourbot=0
+    choix:int=500
+    var:int=250
+    if joueur2 == "botfacile":
+        nbadeviner = botfacile()
+    elif joueur2 =="botimpossible":
+        nbadeviner = random.randint(0, 1000)
+    else:
+        nbadeviner = int(input('Quel chiffre le joueur 1 doit-il deviner? Le chiffre doit être compris entre 0 et 1000.'))
     while not 0<nbadeviner<1000:
         print ("Ce nombre n'est pas valide")
-        nbadeviner = int(input('Quel chiffre le joueur 1 doit-il deviner? Le chiffre doit être compris entre 0 et 1000.'))
+        if joueur2 == "botfacile":
+            nbadeviner = botfacile()
+        elif joueur2 =="botimpossible":
+            nbadeviner = random.randint(0, 1000)
+        else:
+            nbadeviner = int(input('Quel chiffre le joueur 1 doit-il deviner? Le chiffre doit être compris entre 0 et 1000.'))
     clear_terminal()
     gess = 2000
     
     while gess!=nbadeviner :
-        gess = int(input("Quel est votre proposition ? :"))
-        reponse+=1
-        print(input('Le joueur 1 est-il trop haut, trop bas ou bon ? :'))
+        if joueur1 == "botfacile":
+            gess = untrucfacile(reppourbot, turn)
+        elif joueur1 == "botimpossible":
+            if reppourbot == 0:
+                choix=int(choix-var)
+            else:
+                choix=int(choix+var) 
+            var=int(var/2)
+            turn+=1
+            gess=choix
+        if gess > nbadeviner :
+            print ("trop haut!")
+            reppourbot=0
+        elif gess < nbadeviner:
+            print ("trop bas!")
+            reppourbot=1
+        else:
+            gess = int(input("Quel est votre proposition ?"))
     print ("Bravo!!! Tu as devine en ",reponse,"essaies")
     score = int(100/reponse)
     print ("le joueur 1 remporte donc ",score," points !")
@@ -104,83 +163,30 @@ def Joueur2Maitre(joueur1:str):
 
 
 
-def botfacile(statue:int):
+def botfacile():
     '''
     Simule un jeu d'allumettes entre un joueur et un bot.
     Le bot retire aléatoirement entre 1 et 3 allumettes.
     '''
     ChoixPossible=[0,100,200,300,400,500,600,700,800,900,1000,250,750]
-    if statue == 1:
-        time.sleep(1)
-        choix = random.randint(0, 12)
-        Adeviner=ChoixPossible[choix]
-        print(Adeviner)
+    time.sleep(1)
+    choix = random.randint(0, 12)
+    Adeviner=ChoixPossible[choix]
+    return Adeviner
         
-    else :
-
-        time.sleep(1)
-        choix = random.randint(0,1000)
-        return choix
 
 
-def botmoyen(statue:int):
-    '''
-    Simule un jeu d'allumettes entre un joueur et un bot.
-    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
-    if statue == 1:
-        choix = random.randint(0, 1000)
-
-        return choix
-    else :
-        print("hello world")
-
-def botimposible(statue:int):
-    '''
-    Simule un jeu d'allumettes entre un joueur et un bot.
-    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
-    if statue == 1:
-        choix = random.randint(0, 1000)
-        return choix
-    else :
-        print("hello world")
-
-
-def untrucfacile():
-    resultat:int=100
-    choix:int=randint(1,455)
-    reponse:str=input("untruc")
-    turn=0
-
-    while resultat!=choix:
-        if reponse == "trop haut":
-            choix=randint(0,choix)
-            turn+=1
-            return choix
-        else:
-            choix=randint(choix,1000)
-            turn+=1
-            return choix 
-
-
-
-def untrucmoyen():
-    resultat:int=randint(0,1000)
-    choix:int=500
-    reponse:str=input("untruc")
-    turn=0
-    var:int=250
-
-    while resultat!=choix:
-        if reponse == "trop haut":
-            choix=int(choix-var)
-        else:
-            choix=int(choix+var) 
-        var=int(var/2)
+def untrucfacile(reppourbot:int,turn:int):
+    choix=1001
+    if reppourbot == 0:
+        choix=random.randint(0,choix)
         turn+=1
-        print(choix)
+        return choix
+    else:
+        choix=random.randint(choix,1000)
+        turn+=1
+        return choix 
 
-def untrucimpossible():
-    resultat:int=randint(0,1000)
-    print(resultat)
+
 
     
