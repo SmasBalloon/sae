@@ -194,4 +194,4 @@ def botimpossible(tableau_morpion: list[list[str]], symbole: str) -> str:
     return random.choice(possible)
 
 if __name__ == "__main__":
-    morpion("botfacile", "botimpossible", True, True)
+    morpion("botimpossible", "botimpossible", True, True)
