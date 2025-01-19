@@ -146,24 +146,24 @@ def botimposible(statue:int):
 
 def untrucfacile():
     resultat:int=100
-    choix:int=randint(1,455)
+    choix:int=random.randint(1,455)
     reponse:str=input("untruc")
     turn=0
 
     while resultat!=choix:
         if reponse == "trop haut":
-            choix=randint(0,choix)
+            choix=random.randint(0,choix)
             turn+=1
             return choix
         else:
-            choix=randint(choix,1000)
+            choix=random.randint(choix,1000)
             turn+=1
             return choix 
 
 
 
 def untrucmoyen():
-    resultat:int=randint(0,1000)
+    resultat:int=random.randint(0,1000)
     choix:int=500
     reponse:str=input("untruc")
     turn=0
@@ -179,7 +179,7 @@ def untrucmoyen():
         print(choix)
 
 def untrucimpossible():
-    resultat:int=randint(0,1000)
+    resultat:int=random.randint(0,1000)
     print(resultat)
 
     

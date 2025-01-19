@@ -63,8 +63,6 @@ def allumette(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
                 if bot1:
                     if joueur1 == "botfacile":
                         soustraction = botfacile()
-                    elif joueur1 == "botmoyen":
-                        soustraction = botmoyen(allumettes)
                     else:
                         soustraction = botimposible(allumettes)
                     print(f"Le bot {joueur1} enlève {soustraction} allumettes")
@@ -78,8 +76,6 @@ def allumette(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
                 if bot2:
                     if joueur2 == "botfacile":
                         soustraction = botfacile()
-                    elif joueur2 == "botmoyen":
-                        soustraction = botmoyen(allumettes)
                     else:
                         soustraction = botimposible(allumettes)
                     print(f"Le bot {joueur2} enlève {soustraction} allumettes")
@@ -154,17 +150,6 @@ def botfacile():
     '''
     time.sleep(1.5)
     choix = random.choice([1, 2, 3])
-    return choix
-
-def botmoyen(allumettes: int):
-    '''
-    Simule un bot qui est naïf.
-    '''
-    time.sleep(0.5)
-    if allumettes > 4:
-        choix = 4 - allumettes
-    else:
-        choix = 1
     return choix
 
 def botimposible(allumettes: int):
