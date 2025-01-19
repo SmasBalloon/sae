@@ -8,5 +8,8 @@ def joue():
     print()
     print()
     print("----------------------------------")
-    jouer = input().strip().lower()
+    try :
+        jouer = input()
+    except ValueError :
+        jouer = 2
     return jouer

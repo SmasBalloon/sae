@@ -14,6 +14,13 @@ def nettoyer_terminal():
 def insription(joueur1 : str, joueur2 : str, bot1 : bool, bot2 : bool):
     """
     Fonction qui permet d'inscrire les joueurs
+    args:
+        joueur1 (str): Le nom du premier joueur
+        joueur2 (str): Le nom du deuxième joueur
+        bot1 (bool): True si le joueur 1 est un bot, False sinon
+        bot2 (bool): True si le joueur 2 est un bot, False sinon   
+    return:
+        None
     """
     try:
         bot = str(input('Vous voulez jouer contre un bot ou un joueur ? O/N : ')).lower()

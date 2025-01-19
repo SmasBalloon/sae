@@ -48,7 +48,6 @@ def Joueur1Maitre(joueur2:str,joueur1:str):
     Returns:
         None
     """
-
     
     score:int
     nbadeviner:int
