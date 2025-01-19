@@ -5,14 +5,16 @@ from scores import lire_meilleur
 from puissances4 import lancer_partie
 from fichierregle import regledevinette, regleallumette, reglemorpion, reglepuissance4
 scores : int
-nb : float = 0
 bot1 : bool = False
 bot2 : bool = False
 
 def nettoyer_terminal():
     os.system('cls')
 
-def insription():
+def insription(joueur1 : str, joueur2 : str, bot1 : bool, bot2 : bool):
+    """
+    Fonction qui permet d'inscrire les joueurs
+    """
     try:
         bot = str(input('Vous voulez jouer contre un bot ou un joueur ? O/N : ')).lower()
     except ValueError:
@@ -25,8 +27,6 @@ def insription():
         except ValueError:
             print("")
 
-    joueur1, joueur2 = '', ''
-    global bot1, bot2
     if bot == 'o':
         try:
             combien = int(input('Voulez vous 1 bot ou 2 bots ? : '))
@@ -122,7 +122,17 @@ def insription():
 
 
 
-def jeux(joueur1 : str, joueur2 : str , bot1 : bool, bot2 : bool):
+def jeux(joueur1 : str, joueur2 : str , bot1 : bool, bot2 : bool , nb : int):
+    """
+    Fonction qui permet de choisir le jeu
+    args:
+        joueur1 (str): Le nom du premier joueur
+        joueur2 (str): Le nom du deuxième joueur
+        bot1 (bool): True si le joueur 1 est un bot, False sinon
+        bot2 (bool): True si le joueur 2 est un bot, False sinon
+    return:
+        None
+    """ 
     print('|----------------------------------------------------------------------------|')
     print('|                                                                            |')
     print('| -saisir 1 pour jouer au devinnette ;                                       |')
@@ -133,10 +143,15 @@ def jeux(joueur1 : str, joueur2 : str , bot1 : bool, bot2 : bool):
     print('|                                                                            |')
     print('|----------------------------------------------------------------------------|')
     try:
-        nb = float(input('saisir quel jeux vous voulez jouer : '))
+        nb = int(input('saisir quel jeux vous voulez jouer : '))
     except ValueError:
+        nb = 0
+    while nb not in [1, 2, 3, 4, 5]:
         print("\33[0;31;40m Veuillez saisir un nombre valide.\33[0m")
-        return
+        try:
+            nb = int(input('saisir quel jeux vous voulez jouer : '))
+        except ValueError:
+            nb = 0
     nettoyer_terminal()
     if nb == 1:
         regledevinette()
@@ -172,10 +187,12 @@ def debut():
     '''
     joueur1 : str = ''
     joueur2 : str = ''
-    global nb
+    bot1 : bool = False
+    bot2 : bool = False
+    nb : int = 0
     while nb != 5:
-        insription()
-        jeux(joueur1, joueur2 , bot1, bot2)
+        insription(joueur1, joueur2, bot1, bot2)
+        jeux(joueur1, joueur2 , bot1, bot2, nb)
 
 if __name__ == "__main__" :
     debut()

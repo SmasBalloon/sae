@@ -27,6 +27,14 @@ posibilité = {
 }
 
 def check_winner(sym: str, tableau_morpion: list[list[str]]) -> bool:
+    """
+    Vérifie si le symbole `sym` a gagné la partie.
+    args:
+        sym: str: Le symbole à vérifier
+        tableau_morpion: list[list[str]]: Le tableau de jeu
+    return:
+        bool: True si le symbole a gagné, False sinon
+    """
     return (
         (tableau_morpion[1][1] == sym and tableau_morpion[1][3] == sym and tableau_morpion[1][5] == sym) or
         (tableau_morpion[3][1] == sym and tableau_morpion[3][3] == sym and tableau_morpion[3][5] == sym) or
@@ -39,6 +47,16 @@ def check_winner(sym: str, tableau_morpion: list[list[str]]) -> bool:
     )
 
 def morpion(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
+    """
+    Fonction pour jouer au jeu de morpions.
+    args:
+        joueur1 (str): Le nom du premier joueur
+        joueur2 (str): Le nom du deuxième joueur
+        bot1 (bool): True si le joueur 1 est un bot, False sinon
+        bot2 (bool): True si le joueur 2 est un bot, False sinon
+    return:
+        None
+    """
     global jouer, fin_temp, debut_temp, win, joueur, symbole, position, temp, score, possible, posibilité, retirer
     diffbot(joueur1, joueur2, bot1, bot2)
     jouer = 1
@@ -130,12 +148,29 @@ def morpion(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
                 jouer = int(joue())
 
 def botfacile():
+    """
+    Fonction pour le bot facile.
+    args:
+        None
+    return:
+        str: La position choisie par le bot
+    """
+    
     global possible
     position = random.choice(possible)
     print(f'le bot a choisi la position {position}')
     return position
 
 def botimpossible(tableau_morpion: list[list[str]], symbole: str) -> str:
+    """
+    Fonction pour le bot impossible.
+    args:
+        tableau_morpion: list[list[str]]: Le tableau de jeu
+        symbole: str: Le symbole du bot
+    return:
+        str: La position choisie par le bot
+    """
+    
     # Implémentation d'un bot impossible à battre
     # Pour simplifier, nous allons utiliser une stratégie de base pour le bot impossible
     for pos in possible:
@@ -159,4 +194,4 @@ def botimpossible(tableau_morpion: list[list[str]], symbole: str) -> str:
     return random.choice(possible)
 
 if __name__ == "__main__":
-    morpion("botfacile", "botimpossible", True, True)
+    morpion("botimpossible", "botimpossible", True, True)
