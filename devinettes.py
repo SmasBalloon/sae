@@ -162,30 +162,83 @@ def Joueur2Maitre(joueur2:str,joueur1:str):
 
 
 
-def botfacile():
+def botfacile(statue:int):
     '''
     Simule un jeu d'allumettes entre un joueur et un bot.
     Le bot retire aléatoirement entre 1 et 3 allumettes.
     '''
     ChoixPossible=[0,100,200,300,400,500,600,700,800,900,1000,250,750]
-    time.sleep(1)
-    choix = random.randint(0, 12)
-    Adeviner=ChoixPossible[choix]
-    return Adeviner
+    if statue == 1:
+        time.sleep(1)
+        choix = random.randint(0, 12)
+        Adeviner=ChoixPossible[choix]
+        print(Adeviner)
         
+    else :
 
-
-def untrucfacile(reppourbot:int,turn:int):
-    choix=1001
-    if reppourbot == 0:
-        choix=random.randint(0,choix)
-        turn+=1
+        time.sleep(1)
+        choix = random.randint(0,1000)
         return choix
-    else:
-        choix=random.randint(choix,1000)
+
+
+def botmoyen(statue:int):
+    '''
+    Simule un jeu d'allumettes entre un joueur et un bot.
+    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
+    if statue == 1:
+        choix = random.randint(0, 1000)
+
+        return choix
+    else :
+        print("hello world")
+
+def botimposible(statue:int):
+    '''
+    Simule un jeu d'allumettes entre un joueur et un bot.
+    Le bot retire aléatoirement entre 1 et 3 allumettes.'''
+    if statue == 1:
+        choix = random.randint(0, 1000)
+        return choix
+    else :
+        print("hello world")
+
+
+def untrucfacile():
+    resultat:int=100
+    choix:int=randint(1,455)
+    reponse:str=input("untruc")
+    turn=0
+
+    while resultat!=choix:
+        if reponse == "trop haut":
+            choix=randint(0,choix)
+            turn+=1
+            return choix
+        else:
+            choix=randint(choix,1000)
+            turn+=1
+            return choix 
+
+
+
+def untrucmoyen():
+    resultat:int=randint(0,1000)
+    choix:int=500
+    reponse:str=input("untruc")
+    turn=0
+    var:int=250
+
+    while resultat!=choix:
+        if reponse == "trop haut":
+            choix=int(choix-var)
+        else:
+            choix=int(choix+var) 
+        var=int(var/2)
         turn+=1
-        return choix 
+        print(choix)
 
-
+def untrucimpossible():
+    resultat:int=randint(0,1000)
+    print(resultat)
 
     
