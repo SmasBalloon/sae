@@ -163,24 +163,17 @@ def jeux(joueur1 : str, joueur2 : str , bot1 : bool, bot2 : bool , nb : int):
     if nb == 1:
         regledevinette()
         nettoyer_terminal()
-        lire_meilleur('devinette')
-        nettoyer_terminal()
     elif nb == 2:
         regleallumette()
-        nettoyer_terminal()
-        lire_meilleur('allumette')
         nettoyer_terminal()
         allumette(joueur1, joueur2, bot1, bot2)
     elif nb == 3:
         reglemorpion()
         nettoyer_terminal()
-        lire_meilleur('morpion')
         nettoyer_terminal()
         morpion(joueur1, joueur2, bot1, bot2)
     elif nb == 4:
         reglepuissance4()
-        nettoyer_terminal()
-        lire_meilleur('puissance')
         nettoyer_terminal()
         lancer_partie(joueur1, joueur2, bot1, bot2)
     elif nb == 5:
