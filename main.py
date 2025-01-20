@@ -1,7 +1,8 @@
 import os
+import sqlite3
 from allumettes import allumette
 from morpions import morpion
-from scores import lire_meilleur
+from devinettes import devinette
 from puissances4 import lancer_partie
 from fichierregle import regledevinette, regleallumette, reglemorpion, reglepuissance4
 scores : int
@@ -10,6 +11,21 @@ bot2 : bool = False
 
 def nettoyer_terminal():
     os.system('cls')
+
+def lire_meilleur(jeu : str):
+    """
+    Lit les meilleurs scores pour un jeu donné.
+    Args:
+        jeu (str): Le nom du jeu pour lequel les meilleurs scores doivent être lus. 
+                Doit être l'un des suivants: 'allumettes', 'morpions', 'devinettes', 'puissances4'.
+    """
+    conn = sqlite3.connect("scorejeux.db")
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM score_{jeu} ORDER BY score ASC")
+    print(cursor.fetchall())
+    cursor.close()
+    conn.close()
+
 
 def insription(joueur1 : str, joueur2 : str, bot1 : bool, bot2 : bool):
     """
@@ -163,24 +179,21 @@ def jeux(joueur1 : str, joueur2 : str , bot1 : bool, bot2 : bool , nb : int):
     if nb == 1:
         regledevinette()
         nettoyer_terminal()
-        lire_meilleur('devinette')
         nettoyer_terminal()
+        devinette(joueur1, joueur2, bot1, bot2)
     elif nb == 2:
         regleallumette()
         nettoyer_terminal()
-        lire_meilleur('allumette')
         nettoyer_terminal()
         allumette(joueur1, joueur2, bot1, bot2)
     elif nb == 3:
         reglemorpion()
         nettoyer_terminal()
-        lire_meilleur('morpion')
         nettoyer_terminal()
         morpion(joueur1, joueur2, bot1, bot2)
     elif nb == 4:
         reglepuissance4()
         nettoyer_terminal()
-        lire_meilleur('puissance')
         nettoyer_terminal()
         lancer_partie(joueur1, joueur2, bot1, bot2)
     elif nb == 5:
@@ -198,7 +211,7 @@ def debut():
     bot2 : bool = False
     nb : int = 0
     while nb != 5:
-        insription(joueur1, joueur2, bot1, bot2)
+        joueur1, joueur2, bot1, bot2 = insription(joueur1, joueur2, bot1, bot2)
         jeux(joueur1, joueur2 , bot1, bot2, nb)
 
 if __name__ == "__main__" :

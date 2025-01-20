@@ -1,7 +1,22 @@
 def diffbot(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
+    '''
+    Fonction qui permet de demander à l'utilisateur de choisir la difficulté des bots
+    Args:
+        joueur1 (str): Le nom du premier joueur.
+        joueur2 (str): Le nom du deuxième joueur.
+        bot1 (bool): Indicateur si le premier joueur est un bot.
+        bot2 (bool): Indicateur si le deuxième joueur est un bot.
+    Returns:
+        Tuple[str, str, bool, bool]: Les noms des joueurs et les indicateurs des bots.
+    '''
     bots = ["botfacile", "botimpossible"]
 
     def get_difficulty():
+        '''
+        Demande à l'utilisateur de choisir la difficulté du bot.
+        Returns:
+            int: La difficulté du bot.
+        '''
         print('1 facile')
         print('2 impossible')
         try:
@@ -17,6 +32,13 @@ def diffbot(joueur1: str, joueur2: str, bot1: bool, bot2: bool):
         return difficulte
 
     def definir_difficulter(joueur : str):
+        '''
+        Demande à l'utilisateur de choisir la difficulté du bot.
+        Args:
+            joueur (str): Le nom du bot.
+        Returns:
+            str: Le nom du bot avec la difficulté.
+        '''
         difficulte = get_difficulty()
         if difficulte == 1:
             return "botfacile"

@@ -40,7 +40,7 @@ def lire_meilleur(jeu : str):
     conn.close()
 
 if __name__ == "__main__":
-    mise_a_jour_score("botfacile", 5, "morpions")
-    mise_a_jour_score("botmoyen", 10, "morpions")
-    mise_a_jour_score("botimpossible", 15, "morpions")
-    lire_meilleur("morpions")
+    mise_a_jour_score("botfacile", 5, "devinnettes")
+    mise_a_jour_score("botmoyen", 10, "devinnettes")
+    mise_a_jour_score("botimpossible", 15, "devinnettes")
+    lire_meilleur("devinnettes")
