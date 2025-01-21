@@ -26,9 +26,9 @@ def devinette(joueur1:str , joueur2:str, bot1:bool, bot2:bool):
     choix = int(input('Voulez vous deviner(1) ou faire deviner(2)? : '))
     while choix != 3:
         if choix == 1 :
-            Joueur1Maitre(joueur2)
+            Joueur1Maitre(joueur2 , joueur1)
         if choix == 2 :
-            Joueur2Maitre(joueur1)
+            Joueur2Maitre(joueur1 , joueur2)
         else:
             print('veuillez entre une option valide')
         choix = int(input('Voulez vous deviner(1) ou faire deviner(2)? : '))
