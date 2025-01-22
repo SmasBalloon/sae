@@ -1,7 +1,7 @@
 <Body>
-    <h4>
+    <h1>
         Dans ce repertoire Nous pouvons retrouver tout des mini-jeux en python
-    </h4>
+    </h1>
     <h4>
         1. Le jeu du DEVINETTE
     </h4>
